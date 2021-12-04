@@ -1,0 +1,10 @@
+.brand-logo-img {
+    width: 20rem;
+    height: auto;
+}
+
+.nav-bg {
+    background: url('/assets/images/nav-background.png');
+    background-size: cover;
+    background-position: center center;
+}
