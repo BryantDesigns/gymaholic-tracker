@@ -25,7 +25,7 @@ export default function Shop() {
   const rawCat = params.get('category');
   const category = (categories.some((c) => c.id === rawCat) ? rawCat : 'all') as Category | 'all';
   const rawSort = params.get('sort');
-  const sort: SortKey = rawSort && rawSort in SORTS ? (rawSort as SortKey) : 'featured';
+  const sort: SortKey = rawSort && Object.hasOwn(SORTS, rawSort) ? (rawSort as SortKey) : 'featured';
 
   const list = useMemo(() => {
     const filtered = category === 'all' ? products : products.filter((p) => p.category === category);

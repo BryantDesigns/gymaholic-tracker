@@ -76,8 +76,9 @@ export default async (req: Request): Promise<Response> => {
   if (lineItems.length === 0) return json(400, { error: 'Your cart is empty.' });
 
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : FLAT_SHIPPING;
-  const origin =
-    process.env.SITE_URL || process.env.URL || req.headers.get('origin') || 'http://localhost:8888';
+  // The function is served from the same host as the page that called it, so
+  // this keeps deploy previews on the preview URL. SITE_URL overrides it.
+  const origin = (process.env.SITE_URL || new URL(req.url).origin).replace(/\/$/, '');
 
   try {
     const stripe = new Stripe(secret);

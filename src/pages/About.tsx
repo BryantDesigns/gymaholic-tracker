@@ -1,17 +1,9 @@
 import { Link } from 'react-router';
 import ironTexture from '../assets/iron-texture.png';
+import { CodeSection } from '../components/CodeSection';
 import { ArrowIcon } from '../components/Icons';
 import { Meta } from '../components/Meta';
 import { WeightPlate } from '../components/WeightPlate';
-
-const CODE = [
-  ['Re-rack your weights.', 'Every plate, every time. The next person shouldn’t have to strip your leg press.'],
-  ['Wipe the bench.', 'Leave the bench cleaner than you found it.'],
-  ['Don’t curl in the squat rack.', 'Unless it’s 5:45 a.m. and the gym is empty. Then do what you want.'],
-  ['Log your fuel.', 'Training is half the job. The other half is what you eat.'],
-  ['Show up on Monday.', 'And Tuesday. Consistency beats intensity, every single time.'],
-  ['Spot the new guy.', 'Everyone was new once. Help them out.'],
-];
 
 export default function About() {
   return (
@@ -64,25 +56,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section code" id="code">
-        <div className="wrap">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">House rules</p>
-              <h2>The Gymaholic Code</h2>
-            </div>
-          </div>
-          <ol className="code__list">
-            {CODE.map(([rule, note], i) => (
-              <li key={rule}>
-                <span className="code__n mono">{String(i + 1).padStart(2, '0')}</span>
-                <span className="code__rule">{rule}</span>
-                <span className="code__note">{note}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <CodeSection eyebrow="House rules" />
     </>
   );
 }

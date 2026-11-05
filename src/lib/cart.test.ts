@@ -32,6 +32,10 @@ describe('cartReducer', () => {
     expect(s).toEqual([]);
   });
 
+  it('replaces the whole cart (cross-tab sync)', () => {
+    expect(cartReducer([teeLine], { type: 'replace', lines: [shakerLine] })).toEqual([shakerLine]);
+  });
+
   it('clears the cart', () => {
     expect(cartReducer([teeLine, shakerLine], { type: 'clear' })).toEqual([]);
   });

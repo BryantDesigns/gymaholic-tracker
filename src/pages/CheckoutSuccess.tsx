@@ -1,18 +1,34 @@
 import { useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router';
 import { ArrowIcon } from '../components/Icons';
 import { Meta } from '../components/Meta';
 import { useCart } from '../lib/cart-context';
+import { readJSON, writeJSON } from '../lib/storage';
+
+const HANDLED_KEY = 'gymaholic:handled-orders';
 
 export default function CheckoutSuccess() {
   const [params] = useSearchParams();
   const { clear } = useCart();
+  const location = useLocation();
+  const navigate = useNavigate();
   const demo = params.get('demo') === '1';
   const sessionId = params.get('session_id');
+  const freshDemo = demo && (location.state as { freshOrder?: boolean } | null)?.freshOrder === true;
 
+  // Empty the cart exactly once per completed order, so revisiting this URL
+  // later (Back button, bookmark) never wipes a new cart.
   useEffect(() => {
-    clear();
-  }, [clear]);
+    if (sessionId) {
+      const handled = readJSON<string[]>(HANDLED_KEY, []);
+      if (handled.includes(sessionId)) return;
+      clear();
+      writeJSON(HANDLED_KEY, [sessionId, ...handled].slice(0, 20));
+    } else if (freshDemo) {
+      clear();
+      navigate({ search: location.search }, { replace: true, state: null });
+    }
+  }, [sessionId, freshDemo, clear, navigate, location.search]);
 
   return (
     <>

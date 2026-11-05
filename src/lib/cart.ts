@@ -18,7 +18,8 @@ export type CartAction =
   | { type: 'add'; line: CartLine }
   | { type: 'setQty'; key: string; quantity: number }
   | { type: 'remove'; key: string }
-  | { type: 'clear' };
+  | { type: 'clear' }
+  | { type: 'replace'; lines: CartLine[] };
 
 export function lineKey(line: Pick<CartLine, 'productId' | 'colorId' | 'size'>): string {
   return `${line.productId}::${line.colorId}::${line.size ?? '-'}`;
@@ -47,6 +48,8 @@ export function cartReducer(state: CartLine[], action: CartAction): CartLine[] {
       return state.filter((l) => lineKey(l) !== action.key);
     case 'clear':
       return [];
+    case 'replace':
+      return action.lines;
   }
 }
 

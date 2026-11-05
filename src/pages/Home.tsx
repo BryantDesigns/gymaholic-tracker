@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import ironTexture from '../assets/iron-texture.png';
+import { CodeSection } from '../components/CodeSection';
 import { ArrowIcon } from '../components/Icons';
 import { Marquee } from '../components/Marquee';
 import { Meta } from '../components/Meta';
@@ -18,13 +19,6 @@ const HERO_SLUGS = [
   'bronze-bar-shaker',
 ];
 const heroProducts = HERO_SLUGS.map(getProductBySlug).filter(Boolean) as Product[];
-
-const CODE = [
-  ['Re-rack your weights.', 'Nobody wants to find your 45s on the leg press.'],
-  ['Wipe the bench.', 'Your sweat angel is not a gift.'],
-  ['Log your fuel.', 'You can’t out-train a diet you don’t track.'],
-  ['Show up on Monday.', 'And Tuesday. You get the idea.'],
-];
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(
@@ -245,25 +239,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section code" id="code">
-        <div className="wrap">
-          <div className="section-head">
-            <div>
-              <p className="eyebrow">Set 03 · House Rules</p>
-              <h2>The Gymaholic Code</h2>
-            </div>
-          </div>
-          <ol className="code__list">
-            {CODE.map(([rule, note], i) => (
-              <li key={rule}>
-                <span className="code__n mono">{String(i + 1).padStart(2, '0')}</span>
-                <span className="code__rule">{rule}</span>
-                <span className="code__note">{note}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <CodeSection eyebrow="Set 03 · House Rules" featuredOnly />
 
       <section className="section join">
         <div className="wrap join__inner">

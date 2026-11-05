@@ -12,6 +12,15 @@ const LIGHT = 'rgba(255,255,255,0.12)';
 const STEEL = '#a7a9ac';
 const DISPLAY = "'Big Shoulders Display Variable', 'Arial Narrow', sans-serif";
 
+/** True for light colourways (chalk, bronze), from perceived luminance. */
+function isLight(hex: string): boolean {
+  const n = Number.parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  return 0.299 * r + 0.587 * g + 0.114 * b > 140;
+}
+
 interface ArtProps {
   c: ColorOption;
   print?: string;
@@ -179,11 +188,12 @@ function Cap({ c }: ArtProps) {
 }
 
 function Shaker({ c, print }: ArtProps) {
+  const lid = isLight(c.hex) ? '#2a2a2e' : '#141416';
   return (
     <g>
       <rect x="168" y="44" width="64" height="20" rx="10" fill="none" stroke={STEEL} strokeWidth="8" />
-      <path d="M150 64 L250 64 L256 92 L144 92 Z" fill={c.ink === '#1b1b1d' ? '#2a2a2e' : '#141416'} />
-      <rect x="132" y="90" width="136" height="38" rx="6" fill={c.ink === '#1b1b1d' ? '#2a2a2e' : '#141416'} />
+      <path d="M150 64 L250 64 L256 92 L144 92 Z" fill={lid} />
+      <rect x="132" y="90" width="136" height="38" rx="6" fill={lid} />
       <path d="M136 126 L264 126 L256 344 Q255 356 242 356 L158 356 Q145 356 144 344 Z" fill={c.hex} />
       <path d="M136 126 L264 126 L262 150 L138 150 Z" fill={SHADE} />
       <path d="M150 150 L158 346 L172 346 L166 150 Z" fill={LIGHT} />

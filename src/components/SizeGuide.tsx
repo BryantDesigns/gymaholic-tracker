@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
 import type { Product } from '../data/products';
+import { useDialog } from '../lib/useDialog';
 import { CloseIcon } from './Icons';
 
 const APPAREL = [
@@ -18,13 +18,7 @@ const BELT = [
 ];
 
 export function SizeGuide({ product, open, onClose }: { product: Product; open: boolean; onClose: () => void }) {
-  const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const d = ref.current;
-    if (!d) return;
-    if (open && !d.open) d.showModal();
-    if (!open && d.open) d.close();
-  }, [open]);
+  const ref = useDialog(open);
 
   const isBelt = product.art === 'belt';
 

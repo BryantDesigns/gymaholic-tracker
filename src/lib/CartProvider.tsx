@@ -16,9 +16,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // Keep multiple tabs in sync.
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
-      if (e.key !== STORAGE_KEY) return;
-      dispatch({ type: 'clear' });
-      for (const line of readJSON<CartLine[]>(STORAGE_KEY, [])) dispatch({ type: 'add', line });
+      if (e.key !== STORAGE_KEY && e.key !== null) return;
+      dispatch({ type: 'replace', lines: readJSON<CartLine[]>(STORAGE_KEY, []) });
     };
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);

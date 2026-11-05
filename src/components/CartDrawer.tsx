@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router';
 import { useCart } from '../lib/cart-context';
+import { useDialog } from '../lib/useDialog';
 import { useCheckout } from '../lib/useCheckout';
 import { formatPrice, plural } from '../lib/format';
 import { BarbellProgress } from './BarbellProgress';
@@ -10,15 +10,9 @@ import { QtyStepper } from './QtyStepper';
 
 export function CartDrawer() {
   const { lines, totals, isOpen, close, setQty, remove } = useCart();
-  const ref = useRef<HTMLDialogElement>(null);
   const { checkout, busy, error } = useCheckout();
 
-  useEffect(() => {
-    const d = ref.current;
-    if (!d) return;
-    if (isOpen && !d.open) d.showModal();
-    if (!isOpen && d.open) d.close();
-  }, [isOpen]);
+  const ref = useDialog(isOpen);
 
   return (
     <dialog
