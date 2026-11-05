@@ -1,4 +1,24 @@
+# Dependencies & build output
+node_modules
+dist
+dist-ssr
+*.local
+.netlify
+coverage
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Legacy editor tooling
 pinegrow.json
-_pginfo/fonts.json
-_notes/dwsync.xml
-assets/images/_notes/dwsync.xml
+_pginfo/
+_notes/

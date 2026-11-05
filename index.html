@@ -1,84 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b0c" />
+    <title>Gymaholic | Gym Apparel, Lifting Gear & Fuel Log</title>
+    <meta
+      name="description"
+      content="Heavyweight gym apparel, lifting straps, belts and shakers, plus a free meal and protein tracker. Built for people who plan their week around leg day."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gymaholic" />
+    <meta property="og:url" content="https://gymaholictracker.com/" />
+    <meta property="og:title" content="Gymaholic | Gym Apparel, Lifting Gear & Fuel Log" />
+    <meta
+      property="og:description"
+      content="Heavyweight apparel and no-nonsense lifting gear, plus a free meal and protein tracker."
+    />
+    <meta property="og:image" content="https://gymaholictracker.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://gymaholictracker.com/og-image.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Gymaholic needs JavaScript to run the shop and Fuel Log.</noscript>
 
-<head>
-  <meta charset="UTF-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gymaholic | Meal & Calorie Tracker</title>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  <link rel="stylesheet" href="main.css"/>
-</head>
+    <!-- Static form definitions so Netlify Forms can detect them at deploy time. -->
+    <form name="newsletter" data-netlify="true" hidden>
+      <input type="email" name="email" />
+    </form>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="bot-field" />
+      <input name="name" />
+      <input type="email" name="email" />
+      <select name="topic"><option>Order question</option></select>
+      <input name="order" />
+      <textarea name="message"></textarea>
+    </form>
 
-<body>
-  <!-- NavBar -->
-  <nav>
-    <div class="nav-wrapper nav-bg">
-      <div class="container">
-        <a href="#" class="brand-logo center"><img class="brand-logo-img " src="/assets/images/gymaholic-white.svg" alt="Gymaholic Logo"/></a>
-        <ul class="right">
-          <li>
-            <a href="" class="clear-btn btn tan lighten-3">Clear All</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <br/>
-
-  <div class="container">
-    <!-- Form Card -->
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">Add Meal / Food Item</span>
-        <form class="col">
-          <div class="row">
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Item" id="item-name"/>
-              <label for="item-name">Meal</label>
-            </div>
-
-            <div class="input-field col s6">
-              <input type="number" placeholder="Add Calories" id="item-calories"/>
-              <label for="item-calories">Calories</label>
-            </div>
-
-            <button class="add-btn btn blue darken-3"><i class="fas fa-plus"></i> Add Meal</button>
-            <button class="update-btn btn orange darken-3"><i class="fas fa-edit"></i> Update Meal</button>
-            <button class="delete-btn btn red darken-3"><i class="fas fa-minus-circle"></i> Delete Meal</button>
-            <button class="back-btn btn grey pull-right"><i class="fas fa-chevron-circle-left"></i> Back</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <!-- Calorie Count -->
-    <h3 class="center-align">Total Calories: <span class="total-calories">0</span></h3>
-    <!-- Item List -->
-    <ul id="item-list" class="collection">
-      <!-- <li class="collection-item" id="item-0">
-        <strong>Steak Dinner: </strong> <em>1200 Calories</em>
-        <a href="#" class="secondary-content"><i class="edit-item fas fa-edit"></i></a>
-      </li>
-      <li class="collection-item" id="item-0">
-        <strong>Pizza: </strong> <em>1600 Calories</em>
-        <a href="#" class="secondary-content"><i class="edit-item fas fa-edit"></i></a>
-      </li>
-      <li class="collection-item" id="item-0">
-        <strong>Cheese Burger: </strong> <em>1440 Calories</em>
-        <a href="#" class="secondary-content"><i class="edit-item fas fa-edit"></i></a>
-      </li> -->
-    </ul>
-
-  </div>
-
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="app.js"></script>
-</body>
-
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
