@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { products } from '../../src/data/products';
-import handler from './create-checkout-session';
+import handler from '../../netlify/functions/create-checkout-session';
 
 const post = (body: unknown) =>
   new Request('http://localhost/.netlify/functions/create-checkout-session', {
